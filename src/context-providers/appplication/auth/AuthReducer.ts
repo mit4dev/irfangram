@@ -3,10 +3,14 @@ import { IAuthAction } from './AuthActions';
 
 export interface IAuthState {
   isAuthenticated?: boolean;
+  username?: string;
+  password?: string;
 }
 
 export const AUTH_INITIAL_STATE: IAuthState = {
   isAuthenticated: false,
+  username: '',
+  password: '',
 };
 
 export const AuthReducer = produce((draft: IAuthState, action: IAuthAction) => {

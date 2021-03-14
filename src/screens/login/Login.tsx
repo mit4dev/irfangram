@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { SafeAreaView, View, Image } from 'react-native';
 import { Button } from '../../components/button/Button';
+import { Overlay } from '../../components/overlay/Overlay';
 import { TextInput } from '../../components/text-input/TextInput';
 import config from '../../config';
 import { ApplicationContext } from '../../context-providers/appplication/ApplicationContext';
