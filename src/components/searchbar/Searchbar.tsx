@@ -6,6 +6,7 @@ import {
   TextInputProps,
   TouchableWithoutFeedback,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import config from '../../config';
 import {square} from '../../utils';
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     padding: 5,
+    ...Platform.select({ios: {paddingVertical: 10}}),
     marginLeft: 5,
     backgroundColor: '#dedede',
     borderRadius: 4,
