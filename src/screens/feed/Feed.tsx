@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Header } from '../../components/header/Header';
-import { Stories } from '../../components/header/Stories';
-import { Post } from '../../components/post/Post';
-import config from '../../config';
+import React from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Header} from '../../components/header/Header';
+import {Stories} from '../../components/header/Stories';
+import {Posts} from '../../components/post/Posts';
+import {useDisableBackButton} from '../../hooks/useDisableBackButton';
 
-export interface IFeedProps { }
+export interface IFeedProps {}
 
 export const Feed: React.FC<IFeedProps> = () => {
-  const [searching, setSearching] = useState(false);
+  useDisableBackButton();
 
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <Stories />
-      {/* <Posts /> */}
-      <Post />
+      {/* <Stories /> */}
+      <Posts />
+
+      {/* <Post /> */}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: {flex: 1, backgroundColor: '#fff'},
 });

@@ -9,6 +9,7 @@ export const config = {
       logo: require('../assets/images/logo.png'),
       add: require('../assets/images/add.png'),
       heart: require('../assets/images/heart.png'),
+      heartFilled: require('../assets/images/heart-filled.png'),
       messenger: require('../assets/images/messenger.png'),
       home: require('../assets/images/home.png'),
       loupe: require('../assets/images/loupe.png'),
@@ -20,6 +21,7 @@ export const config = {
       speechBuble: require('../assets/images/speech-bubble.png'),
       direct: require('../assets/images/paper-plane.png'),
       bookmark: require('../assets/images/bookmark.png'),
+      spinner: require('../assets/images/spinner.gif'),
     },
   },
 };

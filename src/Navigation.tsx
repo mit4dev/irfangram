@@ -1,18 +1,31 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Login } from './screens/login/Login';
+import {Image, Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Login} from './screens/login/Login';
 import config from './config';
-import { ApplicationProvider } from './context-providers/appplication/ApplicationContext';
-import { Feed } from './screens/feed/Feed';
+import {ApplicationProvider} from './context-providers/appplication/ApplicationContext';
+import {Feed} from './screens/feed/Feed';
+import {square} from './utils';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+const EmptyScreen = (title) => (
+  <View
+    style={{
+      alignItems: 'center',
+      flex: 1,
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+    }}>
+    <Text>{title}</Text>
+  </View>
+);
+
 function Tabs() {
-  const { navigation } = config;
+  const {navigation} = config;
 
   return (
     <Tab.Navigator>
@@ -24,59 +37,59 @@ function Tabs() {
           tabBarIcon: (props) => (
             <Image
               source={config.assets.images.home}
-              style={{ height: 25, width: 25, tintColor: props.color }}
+              style={{...square(25), tintColor: props.color}}
             />
           ),
         }}
       />
       <Tab.Screen
-        name={"3"}
-        component={Feed}
+        name={'2'}
+        component={EmptyScreen.bind(null, 'Arama')}
         options={{
           tabBarLabel: '',
           tabBarIcon: (props) => (
             <Image
               source={config.assets.images.loupe}
-              style={{ height: 25, width: 25, tintColor: props.color }}
+              style={{...square(25), tintColor: props.color}}
             />
           ),
         }}
       />
       <Tab.Screen
-        name={"4"}
-        component={Feed}
+        name={'3'}
+        component={EmptyScreen.bind(null, 'IGTV')}
         options={{
           tabBarLabel: '',
           tabBarIcon: (props) => (
             <Image
               source={config.assets.images.video}
-              style={{ height: 30, width: 30, tintColor: props.color }}
+              style={{...square(30), tintColor: props.color}}
             />
           ),
         }}
       />
       <Tab.Screen
-        name={"5"}
-        component={Feed}
+        name={'5'}
+        component={EmptyScreen.bind(null, 'Alışveriş')}
         options={{
           tabBarLabel: '',
           tabBarIcon: (props) => (
             <Image
               source={config.assets.images.shoppingBag}
-              style={{ height: 25, width: 25, tintColor: props.color }}
+              style={{...square(25), tintColor: props.color}}
             />
           ),
         }}
       />
       <Tab.Screen
-        name={"6"}
-        component={Feed}
+        name={'6'}
+        component={EmptyScreen.bind(null, 'Profil')}
         options={{
           tabBarLabel: '',
           tabBarIcon: (props) => (
             <Image
               source={config.assets.images.user}
-              style={{ height: 25, width: 25, tintColor: props.color }}
+              style={{...square(25), tintColor: props.color}}
             />
           ),
         }}
@@ -86,7 +99,7 @@ function Tabs() {
 }
 
 export const Navigation: React.FC = () => {
-  const { navigation } = config;
+  const {navigation} = config;
 
   return (
     <NavigationContainer>
@@ -98,7 +111,7 @@ export const Navigation: React.FC = () => {
           <Stack.Screen
             name={navigation.tabStack.name}
             component={Tabs}
-            options={{ gestureEnabled: false }}
+            options={{gestureEnabled: false}}
           />
         </Stack.Navigator>
       </ApplicationProvider>

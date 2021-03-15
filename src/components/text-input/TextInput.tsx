@@ -16,7 +16,7 @@ type PickedProps = Partial<
   >
 >;
 
-export interface ITextInputProps extends PickedProps {}
+export interface ITextInputProps extends PickedProps { }
 
 export const TextInput: React.FC<ITextInputProps> = ({
   numberOfLines = 1,
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     borderColor: '#bfbfbf',
     borderWidth: 1,
     padding: 10,
-    backgroundColor: '#ececec',
+    backgroundColor: '#f3f3f3',
   },
 });

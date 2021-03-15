@@ -10,7 +10,7 @@ const data = new Array(15).fill(0).map((_) => ({
 export interface IStoriesProps { }
 export const Stories: React.FC<IStoriesProps> = () => {
   return (
-    <View>
+    <View style={{ borderBottomWidth: 0.5, borderColor: 'lightgray' }}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         data={data}

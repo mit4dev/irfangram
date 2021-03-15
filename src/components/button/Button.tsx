@@ -1,12 +1,15 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
   View,
 } from 'react-native';
+import config from '../../config';
+import { square } from '../../utils';
 
 type TouchableProps = Partial<
   Pick<TouchableOpacityProps, 'style' | 'disabled' | 'activeOpacity'>
@@ -47,6 +50,7 @@ export const Button: React.FC<IButtonProps> = ({
         onPress={onPress}>
         <View>
           {loading ? (
+            // <Image source={config.assets.images.spinner} style={{ ...square(20) }} />
             <ActivityIndicator size="small" color="#fff" />
           ) : (
             <Text style={styles.text}>{title}</Text>
@@ -59,7 +63,6 @@ export const Button: React.FC<IButtonProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: 39,
     padding: 11,
     backgroundColor: '#1877f2',
     borderRadius: 4,
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     opacity: 0.65,
   },
   text: {
-    fontWeight: '600',
+    fontWeight: '700',
     color: '#fff',
   },
 });
