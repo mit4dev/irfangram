@@ -27,6 +27,11 @@ export const Post: React.FC<IPostProps> = ({
   const commentsCount = useRef(Math.ceil(Math.random() * 1000));
   const hoursBefore = useRef(Math.ceil((Math.random() * 100) % 22) + 1);
   const commenterImageUri = useRef(faker.image.image());
+  const videoSrc = useRef(
+    Math.random() > 0.5
+      ? config.assets.videos.video1
+      : config.assets.videos.video2,
+  );
 
   const onScroll = ({ nativeEvent }) => {
     const index = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -49,10 +54,14 @@ export const Post: React.FC<IPostProps> = ({
 
       {/* Slider */}
       <View style={{ height: screen.height * .45, width: screen.width }}>
-        <ScrollView pagingEnabled horizontal scrollEventThrottle={16} showsHorizontalScrollIndicator={false} bounces={false} onScroll={onScroll}>
-          <Image style={{ height: screen.height * .45, width: screen.width }} source={config.assets.images.bigImage} resizeMethod="resize" resizeMode="cover" />
-          <Image style={{ height: screen.height * .45, width: screen.width }} source={config.assets.images.bigImage} resizeMethod="resize" resizeMode="cover" />
-        </ScrollView>
+        {hasVideo ? (
+          <Text>Video</Text>
+        ) : (
+          <ScrollView pagingEnabled horizontal scrollEventThrottle={16} showsHorizontalScrollIndicator={false} bounces={false} onScroll={onScroll}>
+            <Image style={{ height: screen.height * .45, width: screen.width }} source={config.assets.images.bigImage} resizeMethod="resize" resizeMode="cover" />
+            <Image style={{ height: screen.height * .45, width: screen.width }} source={config.assets.images.bigImage} resizeMethod="resize" resizeMode="cover" />
+          </ScrollView>
+        )}
       </View>
 
       {/* Slider footer and pagination dots */}
@@ -62,10 +71,12 @@ export const Post: React.FC<IPostProps> = ({
           <Image source={config.assets.images.speechBuble} style={{ ...square(20), marginHorizontal: 10 }} />
           <Image source={config.assets.images.direct} style={{ ...square(20), marginHorizontal: 10 }} />
         </View>
-        <View style={styles.dots}>
-          <View style={[styles.dot, sliderIndex === 0 ? styles.dot_active : {}]} />
-          <View style={[styles.dot, sliderIndex === 1 ? styles.dot_active : {}]} />
-        </View>
+        {!hasVideo && (
+          <View style={styles.dots}>
+            <View style={[styles.dot, sliderIndex === 0 ? styles.dot_active : {}]} />
+            <View style={[styles.dot, sliderIndex === 1 ? styles.dot_active : {}]} />
+          </View>
+        )}
         <View>
           <Image source={config.assets.images.bookmark} style={{ ...square(20), marginRight: 10 }} />
         </View>

@@ -21,7 +21,11 @@ export const config = {
       speechBuble: require('../assets/images/speech-bubble.png'),
       direct: require('../assets/images/paper-plane.png'),
       bookmark: require('../assets/images/bookmark.png'),
-      spinner: require('../assets/images/spinner.gif'),
+      cancel: require('../assets/images/cancel.png'),
+    },
+    videos: {
+      video1: require('../assets/videos/video-1.mp4'),
+      video2: require('../assets/videos/video-2.mp4'),
     },
   },
 };

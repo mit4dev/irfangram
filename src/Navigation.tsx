@@ -8,6 +8,7 @@ import config from './config';
 import {ApplicationProvider} from './context-providers/appplication/ApplicationContext';
 import {Feed} from './screens/feed/Feed';
 import {square} from './utils';
+import { Search } from './screens/search/Search';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -44,7 +45,7 @@ function Tabs() {
       />
       <Tab.Screen
         name={'2'}
-        component={EmptyScreen.bind(null, 'Arama')}
+        component={Search}
         options={{
           tabBarLabel: '',
           tabBarIcon: (props) => (
