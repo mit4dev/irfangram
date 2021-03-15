@@ -1,15 +1,16 @@
-import { useNavigation } from '@react-navigation/core';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { SafeAreaView, View, Image } from 'react-native';
-import { Button } from '../../components/button/Button';
-import { Overlay } from '../../components/overlay/Overlay';
-import { TextInput } from '../../components/text-input/TextInput';
+import {useNavigation} from '@react-navigation/core';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {SafeAreaView, View, Image} from 'react-native';
+import {Button} from '../../components/button/Button';
+import {TextInput} from '../../components/text-input/TextInput';
 import config from '../../config';
-import { ApplicationContext } from '../../context-providers/appplication/ApplicationContext';
-import { SecurityActions } from '../../context-providers/appplication/auth/AuthActions';
+import {ApplicationContext} from '../../context-providers/appplication/ApplicationContext';
+import {SecurityActions} from '../../context-providers/appplication/auth/AuthActions';
+import {IAuthState} from '../../context-providers/appplication/auth/AuthReducer';
+import {AuthService} from '../../services/auth/AuthService';
 import styles from './Login.styles';
 
-export interface ILoginProps { }
+export interface ILoginProps {}
 
 export const Login: React.FC<ILoginProps> = () => {
   const nav = useNavigation();
@@ -32,12 +33,18 @@ export const Login: React.FC<ILoginProps> = () => {
     }
 
     setLoading(true);
-    loadingTimer.current = setTimeout(() => {
-      context.authDispatch(SecurityActions.SetIsAuthenticated(true));
+    loadingTimer.current = setTimeout(async () => {
+      const authState: IAuthState = {isAuthenticated: true, password, username};
+      await AuthService.save({...authState});
+      console.log('got', await AuthService.get());
+      console.log('saving');
+      context.authDispatch(SecurityActions.SetAll({...authState}));
+      console.log('dispatching');
+      console.log('navigating');
       nav.navigate(config.navigation.tabStack.name, {
         screen: config.navigation.feedPage.name,
       });
-    }, 1000);
+    }, 500);
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import config from '../../../config';
-import { square } from '../../../utils';
+import {square} from '../../../utils';
 
 export const TripleButtons: React.FC = () => (
   <>
@@ -9,7 +9,7 @@ export const TripleButtons: React.FC = () => (
     <Image source={config.assets.images.heart} style={styles.icon} />
     <Image
       source={config.assets.images.messenger}
-      style={[styles.icon, { marginRight: 0 }]}
+      style={[styles.icon, {marginRight: 0}]}
     />
   </>
 );

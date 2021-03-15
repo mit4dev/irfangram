@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TextInput, Image, TextInputProps, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  View,
+  TextInput,
+  Image,
+  TextInputProps,
+  TouchableWithoutFeedback,
+  StyleSheet,
+} from 'react-native';
 import config from '../../config';
-import { square } from '../../utils';
+import {square} from '../../utils';
 
 type TextInputPickedProps = Partial<Pick<TextInputProps, 'placeholder'>>;
 export interface ISearchbarProps extends TextInputPickedProps {
@@ -9,6 +16,7 @@ export interface ISearchbarProps extends TextInputPickedProps {
 }
 
 export const Searchbar: React.FC<ISearchbarProps> = ({
+  placeholder = 'Ara',
   onChangeText: onChangeTextProp,
 }) => {
   const [text, setText] = useState('');
@@ -29,23 +37,46 @@ export const Searchbar: React.FC<ISearchbarProps> = ({
       console.log('calling parent');
       onChangeTextProp(text);
     }
-    // setText(value);
   }, [text]);
 
   return (
     <TouchableWithoutFeedback onPress={onOuterPress}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#dedede', paddingHorizontal: 10, borderRadius: 4 }}>
-        <Image source={config.assets.images.loupe} style={{ ...square(17.5), tintColor: 'gray' }} />
-        <TextInput placeholder="Ara" value={text} onChangeText={onChangeText} ref={inputRef} autoFocus style={{ flex: 1, padding: 5, marginLeft: 5, backgroundColor: '#dedede', borderRadius: 4 }} />
+      <View style={styles.wrapper}>
+        <Image source={config.assets.images.loupe} style={styles.icon} />
+        <TextInput
+          placeholder={placeholder}
+          value={text}
+          onChangeText={onChangeText}
+          ref={inputRef}
+          style={styles.input}
+        />
         {text?.trim()?.length > 0 && (
           <TouchableWithoutFeedback onPress={onClear}>
-            <Image
-              source={config.assets.images.cancel}
-              style={{ ...square(17.5), tintColor: 'gray' }}
-            />
+            <Image source={config.assets.images.cancel} style={styles.icon} />
           </TouchableWithoutFeedback>
         )}
       </View>
     </TouchableWithoutFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#dedede',
+    paddingHorizontal: 10,
+    borderRadius: 4,
+  },
+  input: {
+    flex: 1,
+    padding: 5,
+    marginLeft: 5,
+    backgroundColor: '#dedede',
+    borderRadius: 4,
+  },
+  icon: {
+    ...square(17.5),
+    tintColor: 'gray',
+  },
+});

@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { IAuthAction } from './AuthActions';
+import {IAuthAction} from './AuthActions';
 
 export interface IAuthState {
   isAuthenticated?: boolean;

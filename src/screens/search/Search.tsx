@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { Header } from '../../components/header/Header';
-import { IPostData } from '../../components/post/Post';
-import { SearchResults } from '../../components/search/SearchResults';
-import { Searchbar } from '../../components/searchbar/Searchbar';
-import { TextInput } from '../../components/text-input/TextInput';
+import React, {useEffect, useRef, useState} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Header} from '../../components/header/Header';
+import {IPostData} from '../../components/post/Post';
+import {SearchResults} from '../../components/search/SearchResults';
+import {Searchbar} from '../../components/searchbar/Searchbar';
 import useIsFirstRender from '../../hooks/useIsFirstRender';
-import { generatePostsData } from '../../utils';
+import {generatePostsData} from '../../utils';
 
-export interface ISearchProps { }
+export interface ISearchProps {}
 // let searchTimeout = null;
 export const Search: React.FC<ISearchProps> = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,8 +31,13 @@ export const Search: React.FC<ISearchProps> = () => {
     if (isFirstRender) {
       return;
     }
-    console.log('search term changed')
-    setData(searchTerm?.trim()?.length > 0 ? generatePostsData(Math.ceil(Math.random() * 20) + 1) : []);
+
+    // generate new data randomly
+    setData(
+      searchTerm?.trim()?.length > 0
+        ? generatePostsData(Math.ceil(Math.random() * 12) + 1)
+        : [],
+    );
   }, [searchTerm]);
 
   return (
@@ -45,5 +49,5 @@ export const Search: React.FC<ISearchProps> = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  container: {flex: 1, backgroundColor: '#fff'},
 });

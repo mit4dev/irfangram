@@ -1,29 +1,17 @@
-import React, { ReactNode } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import config from '../../config';
+import React, {ReactNode} from 'react';
+import {StyleSheet, View} from 'react-native';
 
 export interface IHeaderProps {
   left?: ReactNode;
   right?: ReactNode;
 }
 
-export const Header: React.FC<IHeaderProps> = ({ left, right }) => {
+export const Header: React.FC<IHeaderProps> = ({left, right}) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <View style={{ flex: 1 }}>
-          {left && left}
-          {/* <Image source={config.assets.images.logo} style={styles.logo} /> */}
-        </View>
-        <View style={styles.wrapper}>
-          {right && right}
-          {/* <Image source={config.assets.images.add} style={styles.icon} />
-          <Image source={config.assets.images.heart} style={styles.icon} />
-          <Image
-            source={config.assets.images.messenger}
-            style={[styles.icon, { marginRight: 0 }]}
-          /> */}
-        </View>
+        <View style={{flex: 1}}>{left && left}</View>
+        <View style={styles.wrapper}>{right && right}</View>
       </View>
     </View>
   );

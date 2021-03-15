@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import faker from 'faker';
+import React, { useRef, useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Video from 'react-native-video';
 import config from '../../config';
 import { useScreenDimensions } from '../../hooks/useDimensions';
 import { circle, square } from '../../utils';
@@ -27,11 +28,6 @@ export const Post: React.FC<IPostProps> = ({
   const commentsCount = useRef(Math.ceil(Math.random() * 1000));
   const hoursBefore = useRef(Math.ceil((Math.random() * 100) % 22) + 1);
   const commenterImageUri = useRef(faker.image.image());
-  const videoSrc = useRef(
-    Math.random() > 0.5
-      ? config.assets.videos.video1
-      : config.assets.videos.video2,
-  );
 
   const onScroll = ({ nativeEvent }) => {
     const index = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -55,7 +51,7 @@ export const Post: React.FC<IPostProps> = ({
       {/* Slider */}
       <View style={{ height: screen.height * .45, width: screen.width }}>
         {hasVideo ? (
-          <Text>Video</Text>
+          <Video maximumBitRate={2000} source={config.assets.videos.video3} resizeMode="cover" repeat style={{ flex: 1 }} />
         ) : (
           <ScrollView pagingEnabled horizontal scrollEventThrottle={16} showsHorizontalScrollIndicator={false} bounces={false} onScroll={onScroll}>
             <Image style={{ height: screen.height * .45, width: screen.width }} source={config.assets.images.bigImage} resizeMethod="resize" resizeMode="cover" />
@@ -67,7 +63,7 @@ export const Post: React.FC<IPostProps> = ({
       {/* Slider footer and pagination dots */}
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', padding: 10 }}>
-          <TouchableOpacity activeOpacity={0.3} onPress={() => setLiked(!liked)}><Image source={liked ? config.assets.images.heartFilled : config.assets.images.heart} style={[{ ...square(20), marginRight: 10, tintColor: '#000' }, liked ? { tintColor: '#FD1D1D' } : {}]} /></TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.3} style={{zIndex: 1111}} onPress={() => setLiked(!liked)}><Image source={liked ? config.assets.images.heartFilled : config.assets.images.heart} style={[{ ...square(20), marginRight: 10, tintColor: '#000' }, liked ? { tintColor: '#FD1D1D' } : {}]} /></TouchableOpacity>
           <Image source={config.assets.images.speechBuble} style={{ ...square(20), marginHorizontal: 10 }} />
           <Image source={config.assets.images.direct} style={{ ...square(20), marginHorizontal: 10 }} />
         </View>
@@ -107,9 +103,7 @@ export const Post: React.FC<IPostProps> = ({
 const styles = StyleSheet.create({
   container: { borderColor: 'lightgray', borderBottomWidth: 0.5 },
   header: { flexDirection: 'row', borderBottomWidth: 0.5, borderColor: 'lightgray' },
-
   dots: { position: 'absolute', flexDirection: 'row', width: '100%', justifyContent: 'center', },
   dot: { backgroundColor: 'rgba(0,0,0,.25)', borderRadius: 10, width: 8, height: 8, margin: 2 },
   dot_active: { backgroundColor: 'rgba(24,119,242,.75)' },
-
 });

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { generatePostsData } from '../../utils';
-import { Stories } from '../header/Stories';
-import { Post } from './Post';
+import React, {useState} from 'react';
+import {FlatList, View} from 'react-native';
+import {generatePostsData} from '../../utils';
+import {Stories} from '../header/Stories';
+import {Post} from './Post';
 
-export interface IPostsProps { }
+export interface IPostsProps {}
 
-const RenderItem = ({ item, index }) => (
+const RenderItem = ({item}) => (
   <View>
     <Post data={item} />
   </View>

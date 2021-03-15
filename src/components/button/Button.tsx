@@ -1,20 +1,16 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
   View,
 } from 'react-native';
-import config from '../../config';
-import { square } from '../../utils';
 
 type TouchableProps = Partial<
   Pick<TouchableOpacityProps, 'style' | 'disabled' | 'activeOpacity'>
 >;
-
 export interface IButtonProps extends TouchableProps {
   onPress?: () => void;
   title?: string;
@@ -50,7 +46,6 @@ export const Button: React.FC<IButtonProps> = ({
         onPress={onPress}>
         <View>
           {loading ? (
-            // <Image source={config.assets.images.spinner} style={{ ...square(20) }} />
             <ActivityIndicator size="small" color="#fff" />
           ) : (
             <Text style={styles.text}>{title}</Text>

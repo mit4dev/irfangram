@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AUTH_INITIAL_STATE, IAuthState } from '../../context-providers/appplication/auth/AuthReducer';
-import { getData } from '../storage/StorageService';
+import {
+  AUTH_INITIAL_STATE,
+  IAuthState,
+} from '../../context-providers/appplication/auth/AuthReducer';
+import {getData} from '../storage/StorageService';
 
 export class AuthService {
   static AUTH_STORAGE_KEY = '@@AUTH_SERVICE_STORAGE_KEY';
@@ -11,10 +14,10 @@ export class AuthService {
   }
 
   static get(): Promise<IAuthState> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let result: IAuthState = {};
       getData(this.AUTH_STORAGE_KEY)
-        .then(r => (result = { ...r } || { ...AUTH_INITIAL_STATE }))
+        .then((r) => (result = {...r} || {...AUTH_INITIAL_STATE}))
         .catch(() => null)
         .finally(() => {
           resolve(result);
@@ -24,10 +27,10 @@ export class AuthService {
 
   static save(state: IAuthState) {
     return new Promise((resolve, reject) => {
-      const jsonValue = JSON.stringify({ ...state });
+      const jsonValue = JSON.stringify({...state});
       AsyncStorage.setItem(this.AUTH_STORAGE_KEY, jsonValue)
         .then(() => resolve(true))
-        .catch(e => reject(e));
+        .catch((e) => reject(e));
     });
   }
 }

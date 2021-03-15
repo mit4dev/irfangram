@@ -16,7 +16,7 @@ export const generatePostsData = (count = 20): IPostData[] =>
     (_) =>
       ({
         userName: faker.internet.userName(),
-        hasVideo: Math.random() > 0.5,
+        hasVideo: Math.random() > 0.85,
         imageUri: faker.image.image(),
       } as IPostData),
   );
