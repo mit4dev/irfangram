@@ -16,8 +16,8 @@ export const Search: React.FC<ISearchProps> = () => {
   const [data, setData] = useState<IPostData[]>(() => generatePostsData(50));
 
   const onChangeText = (value: string) => {
-    if (searchTimeout) {
-      clearTimeout(searchTimeout?.current);
+    if (searchTimeout?.current) {
+      clearTimeout(searchTimeout.current);
       console.log('clearing');
     }
 
