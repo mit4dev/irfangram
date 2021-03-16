@@ -19,10 +19,10 @@ const SetAll = (value: IAuthState): IAuthAction => ({
   payload: value,
 });
 
-interface ISecurityActions {
+interface IAuthActions {
   [key: string]: (...args) => IAuthAction;
 }
-export const SecurityActions: ISecurityActions = {
+export const AuthActions: IAuthActions = {
   SetIsAuthenticated,
   SetAll,
 };

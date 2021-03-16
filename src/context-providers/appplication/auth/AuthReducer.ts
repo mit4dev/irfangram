@@ -19,5 +19,8 @@ export const AuthReducer = produce((draft: IAuthState, action: IAuthAction) => {
       draft.isAuthenticated = action.payload;
       break;
     }
+    case 'AUTH_SET_ALL': {
+      return {...action.payload};
+    }
   }
 });

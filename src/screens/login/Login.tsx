@@ -5,7 +5,7 @@ import {Button} from '../../components/button/Button';
 import {TextInput} from '../../components/text-input/TextInput';
 import config from '../../config';
 import {ApplicationContext} from '../../context-providers/appplication/ApplicationContext';
-import {SecurityActions} from '../../context-providers/appplication/auth/AuthActions';
+import {AuthActions} from '../../context-providers/appplication/auth/AuthActions';
 import {IAuthState} from '../../context-providers/appplication/auth/AuthReducer';
 import {AuthService} from '../../services/auth/AuthService';
 import styles from './Login.styles';
@@ -38,7 +38,7 @@ export const Login: React.FC<ILoginProps> = () => {
       await AuthService.save({...authState});
       console.log('got', await AuthService.get());
       console.log('saving');
-      context.authDispatch(SecurityActions.SetAll({...authState}));
+      context.authDispatch(AuthActions.SetAll({...authState}));
       console.log('dispatching');
       console.log('navigating');
       nav.navigate(config.navigation.tabStack.name, {
